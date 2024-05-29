@@ -1,38 +1,130 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica", "Helvetica Nueue", sans-serif;
+  color: #5f5f5f;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.todoForm {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  max-width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.add,
+.clear {
+  width: 100px;
+  border: 3px solid lightgrey;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: 0 0 2px lightgrey;
+  background-color: transparent;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.add {
+  border-color: #789090;
+  color: #789090;
+
+  &:hover {
+    border-color: darken(#789090, 10%);
+    color: darken(#789090, 10%);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.clear {
+  border-color: #d17878;
+  color: #d17878;
+
+  &:hover {
+    border-color: darken(#d17878, 10%);
+    color: darken(#d17878, 10%);
+  }
+}
+
+.todoInput {
+  min-width: 0;
+  width: 100%;
+  padding: 20px;
+  border-radius: 5px;
+  border: 2px solid lightgrey;
+  transition: border 0.3s;
+  box-sizing: border-box;
+  font-weight: bold;
+  color: #5f5f5f;
+
+  &:hover {
+    border-color: #cddaec;
+    box-shadow: 0 0 1px #cddaec;
+  }
+  &:focus {
+    border-color: #c2d4ec;
+    box-shadow: 0 0 2px #c2d4ec;
+  }
+}
+
+.header {
+  padding: 2rem 0;
+  border-bottom: 1px solid #cacaca;
+  text-align: center;
+  background: #f0f0f0;
+  margin-bottom: 2rem;
+
+  h1 {
+    margin: 0;
+  }
+}
+
+.main {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  max-width: 800px;
+  width: 100%;
+  margin: auto;
 }
 
-.App-link {
-  color: #61dafb;
-}
+.todo {
+  padding: 20px 20px;
+  background-color: white;
+  box-shadow: inset 0 0 0 white, 0 0 2px lightgrey;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin: 10px 0;
+  user-select: none;
+  transition: padding 0.3s, opacity 0.3s, box-shadow 0.5s;
+  position: relative;
+  opacity: 1;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  &::before {
+    content: "✔";
+    color: white;
+    text-align: center;
+    position: absolute;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    background-color: #9abbbb;
+    border-radius: 100%;
+    opacity: 0; /* Hidden until completed */
+    transition: opacity 0.2s;
   }
-  to {
-    transform: rotate(360deg);
+
+  &.done {
+    text-decoration: line-through;
+    padding-left: 40px;
+    opacity: 0.9;
+
+    &::before {
+      opacity: 1;
+    }
   }
 }
